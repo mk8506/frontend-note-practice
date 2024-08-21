@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=
+  , initial-scale=1.0">
+  <title>card-news</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    html {
+      padding: 20px;
+      background-color: rgb(22, 20, 20);
+
+      ul {
+        display: inline-flex;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+    }
+
+    li {
+      display: inline-block;
+      margin: 0 auto;
+      
+      a {
+        display: block;
+        width: 250px;
+        height: 340px;
+        margin: 20px;
+        border: 1px dotted grey;
+        text-decoration: none;
+        box-shadow: 3px 3px 10px rgb(124, 124, 124);
+        border-radius: 10px;
+
+        &:hover img {  /***/
+          transform: scale(1.05, 1.05);
+          transition: all 0.1s;
+        }
+
+        figure {
+          width: 100%;
+          height: 170px;
+          border-radius: 10px 10px 0 0;
+
+          overflow: hidden; /***/
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+        
+        div {
+          width: 100%;
+          height: calc(100% - 170px);
+          padding: 10px;
+          color: rgb(223, 223, 223);
+          background: -webkit-gradient(linear, left top, right bottom, from(rgb(78, 78, 78)), to(black));
+          border-radius: 0 0 10px 10px;
+          
+          h1 {
+            font-size: 20px;
+          }
+
+          .article {
+            width: 100%;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            word-wrap: break-word;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+
+            margin-top: 5px;
+            color: rgb(255, 255, 233);
+          }
+          
+          .date {
+            width: 100%;
+            font-size: 14px;
+            color: grey;
+            margin-top: 15px;
+          }
+
+          .name {
+            width: 100%;
+            font-size: 14px;
+            color: grey;
+          }
+        }
+      }
+    }
+  </style>
+</head>
+<body>
+  <ul>
+    <li>
+      <a href="http://www.naver.com">
+        <figure>
+          <img src="gratisography-cyber-kitty.jpg" alt="spring">
+        </figure>
+        <div>
+          <h1>The title of the news</h1>
+          <p class="article">The preview of the news content.
+            wlakdjlak joijdckaslkfjoweifcozxtgl,zxc
+            ewirjow234htlkz ,.cm er8u234rf032q8t
+            ewfc83209esru3275rn vuaklV 8325aesii nevsk?
+            oiw33q 4aoistd,ol mfvolse/ZAWosz'Aerp9u tgmv
+          </p>
+          <p class="date">The written date</p>
+          <p class="name">The name of the author</p>
+        </div>
+      </a>
+    </li>
+    
+    <li>
+      <a href="http://www.naver.com">
+        <figure>
+          <img src="gratisography-cyber-kitty.jpg" alt="spring">
+        </figure>
+        <div>
+          <h1>The title of the news</h1>
+          <p class="article">The preview of the news content.
+            wlakdjlak joijdckaslkfjoweifcozxtgl,zxc
+            ewirjow234htlkz ,.cm er8u234rf032q8t
+            ewfc83209esru3275rn vuaklV 8325aesii nevsk?
+            oiw33q 4aoistd,ol mfvolse/ZAWosz'Aerp9u tgmv
+          </p>
+          <p class="date">The written date</p>
+          <p class="name">The name of the author</p>
+        </div>
+      </a>
+    </li>
+    
+    <li>
+      <a href="http://www.naver.com">
+        <figure>
+          <img src="gratisography-cyber-kitty.jpg" alt="spring">
+        </figure>
+        <div>
+          <h1>The title of the news</h1>
+          <p class="article">The preview of the news content.
+            wlakdjlak joijdckaslkfjoweifcozxtgl,zxc
+            ewirjow234htlkz ,.cm er8u234rf032q8t
+            ewfc83209esru3275rn vuaklV 8325aesii nevsk?
+            oiw33q 4aoistd,ol mfvolse/ZAWosz'Aerp9u tgmv
+          </p>
+          <p class="date">The written date</p>
+          <p class="name">The name of the author</p>
+        </div>
+      </a>
+    </li>
+    
+    <li>
+      <a href="http://www.naver.com">
+        <figure>
+          <img src="gratisography-cyber-kitty.jpg" alt="spring">
+        </figure>
+        <div>
+          <h1>The title of the news</h1>
+          <p class="article">The preview of the news content.
+            wlakdjlak joijdckaslkfjoweifcozxtgl,zxc
+            ewirjow234htlkz ,.cm er8u234rf032q8t
+            ewfc83209esru3275rn vuaklV 8325aesii nevsk?
+            oiw33q 4aoistd,ol mfvolse/ZAWosz'Aerp9u tgmv
+          </p>
+          <p class="date">The written date</p>
+          <p class="name">The name of the author</p>
+        </div>
+      </a>
+    </li>
+    
+    <li>
+      <a href="http://www.naver.com">
+        <figure>
+          <img src="gratisography-cyber-kitty.jpg" alt="spring">
+        </figure>
+        <div>
+          <h1>The title of the news</h1>
+          <p class="article">The preview of the news content.
+            wlakdjlak joijdckaslkfjoweifcozxtgl,zxc
+            ewirjow234htlkz ,.cm er8u234rf032q8t
+            ewfc83209esru3275rn vuaklV 8325aesii nevsk?
+            oiw33q 4aoistd,ol mfvolse/ZAWosz'Aerp9u tgmv
+          </p>
+          <p class="date">The written date</p>
+          <p class="name">The name of the author</p>
+        </div>
+      </a>
+    </li>
+    
+    <li>
+      <a href="http://www.naver.com">
+        <figure>
+          <img src="gratisography-cyber-kitty.jpg" alt="spring">
+        </figure>
+        <div>
+          <h1>The title of the news</h1>
+          <p class="article">The preview of the news content.
+            wlakdjlak joijdckaslkfjoweifcozxtgl,zxc
+            ewirjow234htlkz ,.cm er8u234rf032q8t
+            ewfc83209esru3275rn vuaklV 8325aesii nevsk?
+            oiw33q 4aoistd,ol mfvolse/ZAWosz'Aerp9u tgmv
+          </p>
+          <p class="date">The written date</p>
+          <p class="name">The name of the author</p>
+        </div>
+      </a>
+    </li>
+    
+    <li>
+      <a href="http://www.naver.com">
+        <figure>
+          <img src="gratisography-cyber-kitty.jpg" alt="spring">
+        </figure>
+        <div>
+          <h1>The title of the news</h1>
+          <p class="article">The preview of the news content.
+            wlakdjlak joijdckaslkfjoweifcozxtgl,zxc
+            ewirjow234htlkz ,.cm er8u234rf032q8t
+            ewfc83209esru3275rn vuaklV 8325aesii nevsk?
+            oiw33q 4aoistd,ol mfvolse/ZAWosz'Aerp9u tgmv
+          </p>
+          <p class="date">The written date</p>
+          <p class="name">The name of the author</p>
+        </div>
+      </a>
+    </li>
+    
+    <li>
+      <a href="http://www.naver.com">
+        <figure>
+          <img src="gratisography-cyber-kitty.jpg" alt="spring">
+        </figure>
+        <div>
+          <h1>The title of the news</h1>
+          <p class="article">The preview of the news content.
+            wlakdjlak joijdckaslkfjoweifcozxtgl,zxc
+            ewirjow234htlkz ,.cm er8u234rf032q8t
+            ewfc83209esru3275rn vuaklV 8325aesii nevsk?
+            oiw33q 4aoistd,ol mfvolse/ZAWosz'Aerp9u tgmv
+          </p>
+          <p class="date">The written date</p>
+          <p class="name">The name of the author</p>
+        </div>
+      </a>
+    </li>
+  </ul>
+</body>
+</html>

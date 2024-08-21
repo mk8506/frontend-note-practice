@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="widtd=device-widtd, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    html {
+      padding: 0; 
+      margin: 0;
+    }
+    body {
+      background-color: rgb(73, 60, 60);
+      padding: 0;
+      margin: 0;
+      display: flex;
+    }
+    .mytable {
+      caption-side: top; /*표 설명 위치*/
+      border: 1px solid rgb(73, 60, 60);
+      border-radius: 10px;
+      overflow: hidden;
+      border-collapse: collapse;
+      empty-cells: show;
+      margin: 20px;
+      border: 1px solid rgb(196, 196, 196); 
+      box-shadow: 10px 10px 5px #7e7e7e;
+
+      .mycaption {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 30px;
+        line-height: 180%;
+        text-align: center;
+        color: white;
+        background-color: rgb(66, 62, 62);
+        display: block; 
+        caption-side: top; /*default*/
+        box-shadow: 10px 10px 5px #7e7e7e;
+        border: 2px solid yellow;
+      }
+
+      #secondCaption {
+        background-color: transparent;
+      }
+
+      tr {
+        padding: 10px;
+        text-align: center;
+        margin: 0;
+      }
+    }
+    tbody {
+      td {
+        border: 1px solid rgb(73, 60, 60);
+        padding: 10px;
+        margin: 0;
+        text-align: center;
+
+        &:nth-child(odd) {
+        background-color: antiquewhite;
+        }
+
+        &:nth-child(even) {
+          background-color: #f1eee5;
+        }
+      }
+    }
+
+    thead {
+      th {
+        border: 1px solid rgb(73, 60, 60);
+        padding: 10px;
+        margin: 0;
+        text-align: center;
+        background-color: #bdbcbc;
+      }
+    }
+
+    .onlyTable {
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+  </style>
+</head>
+<body>
+  <table class="mytable">
+    <caption class="mycaption">College Enrollment</caption>
+    <thead>
+      <tr>
+        <th>student ID</th>
+        <th>Last Name</th>
+        <th>Initial</th>
+        <th>Age</th>
+        <th>program</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>245</td>
+        <td>White</td>
+        <td>R.</td>
+        <td>21</td>
+        <td>Drafting</td>
+      </tr>
+      <tr>
+        <td>245</td>
+        <td>White</td>
+        <td>R.</td>
+        <td>21</td>
+        <td>Drafting</td>
+      </tr>
+      <tr>
+        <td>245</td>
+        <td>White</td>
+        <td>R.</td>
+        <td>21</td>
+        <td>Drafting</td>
+      </tr>
+      <tr>
+        <td>245</td>
+        <td>White</td>
+        <td>R.</td>
+        <td>21</td>
+        <td>Drafting</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="mytable">
+    <caption class="mycaption" id="secondCaption">College Enrollment</caption>
+    <div class="onlyTable">
+      <thead>
+        <tr>
+          <th>student ID</th>
+          <th>Last Name</th>
+          <th>Initial</th>
+          <th>Age</th>
+          <th>program</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>245</td>
+          <td>White</td>
+          <td>R.</td>
+          <td>21</td>
+          <td>Drafting</td>
+        </tr>
+        <tr>
+          <td>245</td>
+          <td>White</td>
+          <td>R.</td>
+          <td>21</td>
+          <td>Drafting</td>
+        </tr>
+        <tr>
+          <td>245</td>
+          <td>White</td>
+          <td>R.</td>
+          <td>21</td>
+          <td>Drafting</td>
+        </tr>
+        <tr>
+          <td>245</td>
+          <td>White</td>
+          <td>R.</td>
+          <td>21</td>
+          <td>Drafting</td>
+        </tr>
+      </tbody>
+    </div>
+  </table>
+</body>
+</html>
+
+
+<!--I want a thin white line over the whole chart (first)
+and round corners for the only the cart (second)-->

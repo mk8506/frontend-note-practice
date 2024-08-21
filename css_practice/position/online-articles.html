@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>online-article-blocks</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      width: 100%;
+      height: 100%;
+    }
+
+    ul {
+      list-style-type: none;
+
+      li {
+        list-style-type: inherit;
+        border-bottom: 1px dotted #ccc;
+
+        &:first-child {
+          border-top: 1px dotted #ccc;
+        }
+
+        a {
+          border: 1px solid pink;
+          display: block;
+          width: 100%;
+          height: 100%;
+    
+          .image {
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+    
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+    
+          .article { /*parent element of the two <p>*/
+            position: absolute; /*여기다 relative하면 이게 또 absolute 해야하는데*/
+            display: inline-block;
+            border: 1px solid rgb(122, 88, 88);
+            display: inline-block;
+            height: 100px;
+            width: calc(100% - 100px);
+
+            .text {
+              display: inline-block;
+              position: inherit;
+              width: 80%;
+              height: 80%;
+              border: 1px solid yellowgreen;
+              top: 50%;
+              z-index: 100;
+              margin-top: -40px;
+              margin-left: 30px;
+
+              overflow: hidden; /*word_wrap*/
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              -webkit-line-clamp: 2; 
+              -webkit-box-orient: vertical;
+              word-wrap:break-word;
+
+              .title {
+                color: black;
+                font-size: 24px;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+              }
+
+              .content {
+                font-size: 16px;
+                color: rgb(65, 65, 65);
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+              }
+            }
+          }
+        }
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <ul>
+    <li>
+      <a href="#">
+        <span class="image">
+          <img src="img/thumb-01.jpg" alt="1">
+        </span> <!--div로 주면 문단돼서 enter됨 so span쓰기-->
+        <span class="article"> <!--span의 부모요소는 그냥 전체;;-->
+          <span class="text">
+            <span class="title">The title of the article</span><br/><!--p도 문단임-->
+            <span class="content">The content of the article</span><!--span안에 p들어갈수 없음-->
+        </span>
+      </a>
+    </li>
+
+    <li>
+      <a href="#">
+        <span class="image">
+          <img src="img/thumb-01.jpg" alt="1">
+        </span> <!--div로 주면 문단돼서 enter됨 so span쓰기-->
+        <span class="article"> <!--span의 부모요소는 그냥 전체;;-->
+          <span class="text">
+            <span class="title">The title of the article</span><br/><!--p도 문단임-->
+            <span class="content">Tutorials help clarify ideas from lectures and work through exercises based on the lecture material.
+              You should make sure that you use them effectively by examining in advance the material to be covered in each week's tutorial,
+              by asking questions, by offering suggestions and by generally participating.
+              Tutorials will often involve collaborative and break-out work where you will work with a group of other students
+              to solve or answer problems. This will often be done in your major project group.
+              Tutorial participation and engagement contributes to your project mark.
+              Tutorials will be run via Microsoft Teams for online classes.</span><!--span안에 p들어갈수 없음-->
+        </span>
+      </a>
+    </li>
+
+    <li>
+      <a href="#">
+        <span class="image">
+          <img src="img/thumb-01.jpg" alt="1">
+        </span> <!--div로 주면 문단돼서 enter됨 so span쓰기-->
+        <span class="article"> <!--span의 부모요소는 그냥 전체;;-->
+          <span class="text">
+            <span class="title">The title of the article</span><br/><!--p도 문단임-->
+            <span class="content">The content of the article</span><!--span안에 p들어갈수 없음-->
+        </span>
+      </a>
+    </li>
+  </ul>
+</body>
+</html>
