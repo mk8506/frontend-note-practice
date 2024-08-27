@@ -1,0 +1,21 @@
+indentation : 들여쓰기
+tag : <>
+
+내용에 들여쓰기 해도 사이트에는 적용되지 않음
+화면에 보이지 않는 tag는 head tag으로 감싸주기
+
+The <h1> element defines a large heading
+The <p> element defines a paragraph
+The <br> is just nothing.. has no end tag. break. enter.
+
+Attributes are always specified in the start tag name="value"
+ex: The <a> tag defines a hyperlink. The href attribute
+
+여러 줄->tab, shift+tab->backwards, also switch between windows
+alt+tab -> switch between apps, +shift -> backwards
+
+style attribute: color, font, size, and more.
+alt attribute: the name of that
+title : The value of the title attribute will be displayed as a tooltip when you mouse over the element
+
+https://www.simplilearn.com/tutorials/programming-tutorial/backend-languages

@@ -5,12 +5,11 @@ class Student {
   #math;
 
   constructor(korean, english, math) {
-    this.setKorean = korean;
-    this.setEnglish = english;
-    this.setMath = math;
+    this.korean = korean;
+    this.english = english;
+    this.math = math;
   }
-
-  setKorean(value) {  
+  set korean(value) {  
     if (value < 0) {
       console.log("점수를 입력하세요");
       return;
@@ -18,11 +17,11 @@ class Student {
     this.#korean = value;
   }
 
-  getKorean() {
+  get korean() {
     return this.#korean;
   }
 
-  setEnglish(value) {  
+  set english(value) {  
     if (value < 0) {
       console.log("점수를 입력하세요");
       return;
@@ -30,11 +29,11 @@ class Student {
     this.#english = value;
   }
 
-  getEnglish() {
+  get english() {
     return this.#english;
   }
 
-  setMath(value) {  
+  set math(value) {  
     if (value < 0) {
       console.log("점수를 입력하세요");
       return;
@@ -42,28 +41,27 @@ class Student {
     this.#math = value;
   }
 
-  getMath() {
+  get math() {
     return this.#math;
   }
 
   sum() {
-    let total = 0;
-    total += this.getKorean();
-    total += this.getEnglish();
-    total += this.getMath();
-    return total;
+    return (this.korean + this.english + this.math);
   }
   
   avg(sum) {
-    const avg = sum / 3;
-    return avg;
+    return sum / 3;
   }
 }
 
 const Cheol = new Student(91, 81, 77);
-const sumRe = Cheol.sum(); //???
-console.log("Cheol sum: " + sumRe);
-console.log("Cheol avg: " + Cheol.avg(sumRe));
+console.log("Cheol sum: " + Cheol.sum());
+console.log("Cheol avg: " + Cheol.avg(Cheol.sum()));
 
-//const Young = new Student(72, 95, 98);
-//const Min = new Student(80, 86, 84);
+const Young = new Student(72, 95, 98);
+console.log("Young sum: " + Young.sum());
+console.log("Young avg: " + Young.avg(Young.sum()));
+
+const Min = new Student(80, 86, 84);
+console.log("Min sum: " + Min.sum());
+console.log("Min avg: " + Min.avg(Min.sum()));
