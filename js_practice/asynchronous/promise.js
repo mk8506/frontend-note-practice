@@ -29,14 +29,15 @@ function myCalculator(num1, num2) { //returns a promise
       let sum = num1 + num2;
       // if (sum == num1 + num2) {resolve(sum);}
       // else {reject("fail");}
-      resolve(sum);
+      resolve(sum);  //resolve() is a method in Promise. It returns its para
+      //and the method then() gets it to its para
     }
   );
 }
 
-myCalculator(5, 5).then(result => {  //promise.then();
-  myDisplayer(result); //calc -> displayer
-});
+myCalculator(5, 5)
+  .then(result => {myDisplayer(result);})
+  .catch(result => {})
 
 /**----------------*/
 
