@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <header>
+    <h1>학과관리</h1><hr/>
+  </header>
+
+  <main>
+    <dl>
+      <dt>학과번호</dt>
+      <dd id="id"></dd>
+      <dt>학과명</dt>
+      <dd id="dname"></dd>
+      <dt>학과위치</dt>
+      <dd id="loc"></dd>
+    </dl>
+    <a href="index.html">go to list</a> | <a id="edit">edit</a>
+    <a href="#" id="del">delete</a>
+  </main>
+
+  <footer><hr/>
+    <address>copyright&copy;2024.megastudy</address>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="./util.js"></script>
+  <script></script>
+  <script>
+    //get data
+    (async () => {
+      //get GET's para //????
+      const params = utilHelper.getQuery();
+      if (!params.id) {
+        alert("학과번호가 없습니다");
+        history.back();
+        return;
+      }
+
+      //request
+      let response = null;
+      const url = `http://localhost:3001/department/${params.id}`;
+      try {
+        response = await axios.get(url);
+        console.log(response.data);
+      } catch (error) {
+        console.error(error);
+        alert(error.message);
+        return;
+      }
+
+      //display
+      document.querySelector("#id").innerHTML =  response.data.id;
+      document.querySelector("#dname").innerHTML =  response.data.dname;
+      document.querySelector("#loc").innerHTML =  response.data.loc;
+
+      //edit -> edit.html -> +link
+      document.querySelector("#edit").setAttribute("href", `edit.html?id=${response.data.id}`);
+
+      //delete -> alert -> save info
+      const del = document.querySelector("#del");
+      del.dataset.id = response.data.id;
+      del.dataset.dname = response.data.dname;
+    })();
+
+    //delete btn
+    document.querySelector("#del").addEventListener("click", async e => {
+      e.preventDefault();
+      const current = e.currentTarget;
+      const id = current.dataset.id;
+      const dname = current.dataset.dname;
+
+      if (confirm(`정말 ${dname}(을)를 삭제하시겠습니까?`)) {
+        try {
+          await axios.delete(`http://localhost:3001/department/${id}`);
+        } catch (e) {
+          console.error(e);
+          alert("요청을 처리 실패");
+          return;
+        }
+
+        alert("삭제되었습니다");
+    
+        //go to index.
+        window.location = "index.html";
+      }
+    })
+  </script>
+</body>
+</html>

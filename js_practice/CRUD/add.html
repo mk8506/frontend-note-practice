@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <header>
+    <h1>학과관리</h1><hr/>
+  </header>
+
+  <main>
+    <form id="form">
+      <div>
+        <label for="dname">학과이름*</label>
+        <input type="text" name="dname" id="dname"/>
+      </div>
+      <div>
+        <label for="loc">학과위치</label>
+        <input type="text" name="loc" id="loc"/>
+      </div><hr/>
+      <div>
+        <button type="submit">save</button>
+        <button type="reset">rewrite</button>
+      </div>
+    </form>
+  </main>
+
+  <footer><hr/>
+    <address>copyright&copy;2024.megastudy</address>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="./util.js"></script>
+  <script></script>
+  <script>
+    document.querySelector("#form").addEventListener("submit", async e => {
+      e.preventDefault();
+      
+      const dname = document.querySelector("#dname").value;
+      const loc = document.querySelector("#loc").value;
+
+      let response = null;
+      const url = `http://localhost:3001/department/`;
+      try {
+        response = await axios.post(url, {
+          dname: dname,
+          loc: loc,
+        });
+        console.log(response.data);
+      } catch (error) {
+        console.error(error);
+        alert(error.message);
+        return;
+      }
+      window.location = `view.html?id=${response.data.id}`;
+    })
+    
+  </script>
+</body>
+</html>

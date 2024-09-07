@@ -1,0 +1,32 @@
+* {
+  box-sizing: border-box;
+}
+
+main {
+  width: 850px;
+  margin: auto;
+}
+
+table {
+  margin-top: 20px;
+}
+
+col {
+  width: 200px;
+}
+.col1 {
+  width: 50px;
+}
+
+td {
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+address {
+  text-align: center;
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <header>
+    <h1>학과관리</h1><hr/>
+  </header>
+
+  <main>
+    <form id="form">
+      <input type="hidden" name="id" id="id"/>
+      <div>
+        <label for="dname">학과이름*</label>
+        <input type="text" name="dname" id="dname"/>
+      </div>
+      <div>
+        <label for="loc">학과위치</label>
+        <input type="text" name="loc" id="loc"/>
+      </div><hr/>
+      <div>
+        <button type="submit">edit</button>
+        <button type="reset">rewrite</button>
+      </div>
+    </form>
+  </main>
+
+  <footer><hr/>
+    <address>copyright&copy;2024.megastudy</address>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="./util.js"></script>
+  <script></script>
+  <script>
+    (async () => {
+      //get GET's para //????
+      const params = utilHelper.getQuery();
+      if (!params.id) {
+        alert("학과번호가 없습니다");
+        history.back();
+        return;
+      }
+
+      //request
+      let response = null;
+      const url = `http://localhost:3001/department/${params.id}`;
+      try {
+        response = await axios.get(url);
+        console.log(response.data);
+      } catch (error) {
+        console.error(error);
+        alert(error.message);
+        return;
+      }
+
+      //display
+      document.querySelector("#id").value =  response.data.id;
+      document.querySelector("#dname").value =  response.data.dname;
+      document.querySelector("#loc").value =  response.data.loc;
+    })();
+
+    document.querySelector("#form").addEventListener("submit", async e => {
+      e.preventDefault();
+      
+      const dname = document.querySelector("#dname").value;
+      const loc = document.querySelector("#loc").value;
+      const id = document.querySelector("#id").value;
+
+      let response = null;
+      const url = `http://localhost:3001/department/${id}`;
+      try {
+        response = await axios.put(url, {
+          dname: dname,
+          loc: loc,
+        });
+        console.log(response.data);
+      } catch (error) {
+        console.error(error);
+        alert(error.message);
+        return;
+      }
+      window.location = `view.html?id=${id}`;
+    })
+  </script>
+</body>
+</html>

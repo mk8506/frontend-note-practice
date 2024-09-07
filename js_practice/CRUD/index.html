@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./style.css"/>
+</head>
+<body>
+  <header>
+    <h1>학과관리</h1><hr/>
+  </header>
+
+  <main>
+    <p><a href="add.html">새 학과 추가</a></p>
+    <label>전체선택<input type="checkbox" id="all-check"/></label>
+    <span>
+      <button type="button"><a href="#" id="edit">수정</a></button>
+      <button type="button"><a href="#" id="delete">삭제</a></button>
+    </span>
+
+    <table>
+      <colgroup>
+        <col class="col1"/>
+        <col/>
+        <col/>
+        <col/>
+      </colgroup>
+      <thead>
+        <tr>
+          <th width="35px">선택</th>
+          <th>학과번호</th>
+          <th>학과이름</th>
+          <th>학과위치</th>
+        </tr>
+      </thead>
+      <tbody id="here">
+
+      </tbody>
+    </table>
+  </main>
+
+  <footer><hr/>
+    <address>copyright&copy;2024.megastudy</address>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="./util.js"></script>
+  <script>
+    //**create**
+    //async
+    //1. request ajax
+    //2. display data
+    //create tr and tds
+    //tds are : id, a>dname, loc, a>edit & a>delete
+    //(imp! creating the names of the edit and delete links)
+    //+delete event
+
+    //async
+    (async () => {
+
+      //1. request ajax
+      const url = "http://localhost:3001/department/";
+      let response = null;
+      try {
+        response = await axios.get(url);  //response = requested data
+        console.log(response.data);
+      } catch (error) {
+        console.error(error);
+        alert(error.message);
+        return;}
+
+      //2. display data
+      response.data.forEach((v,i) => {
+        //createElement
+        const tr = document.createElement("tr");
+        
+        const tdCheck = document.createElement("td");
+        const tdId = document.createElement("td");
+        const tdDname = document.createElement("td");
+        const tdLoc = document.createElement("td");
+
+        const tdLabel = document.createElement("label");
+        const tdInput = document.createElement("input");
+
+        const aDname = document.createElement("a");
+
+        //appendChild
+        const here = document.querySelector("#here");
+        here.appendChild(tr);
+
+        tr.appendChild(tdCheck);
+        tr.appendChild(tdId);
+        tr.appendChild(tdDname);
+        tr.appendChild(tdLoc);
+
+        tdCheck.appendChild(tdLabel);
+        tdLabel.appendChild(tdInput);
+
+        tdDname.appendChild(aDname);
+
+        //innerHTML
+        tdId.innerHTML = v.id;
+        aDname.innerHTML = v.dname;
+        tdLoc.innerHTML = v.loc;
+
+        //setAttribute
+        tr.setAttribute("class", "row");
+        tdInput.setAttribute("type", "checkbox");
+        tdInput.setAttribute("class", "check");
+      })
+
+      //edit delete
+      const aEdit = document.querySelector("#edit");
+      aEdit.addEventListener("click", e => {
+        e.preventDefault(); //???
+        document.querySelectorAll(".row").forEach((v,i) => {
+          if (v.querySelector(".check").checked) {
+            e.currentTarget.href = `edit.html?id=${response.data[i].id}`;
+            console.log(e.currentTarget);
+            //go to that link
+            setTimeout(() => {
+              // Now manually navigate to the link after custom logic
+              window.location.href = e.currentTarget.href; // This will manually navigate to the link
+              console.log('Navigating to the link after custom code ran.');
+            }, 200);
+          }
+        });
+      });
+      
+      //delete
+      const aDelete = document.querySelector("#delete");
+      aDelete.addEventListener("click", e => {
+        e.preventDefault();
+
+        document.querySelectorAll(".row").forEach(async (v,i) => {
+          if (v.querySelector(".check").checked) {
+            const id = response.data[i].id;
+            const dname = response.data[i].dname;
+  
+            if (confirm(`정말 ${dname}(을)를 삭제하시겠습니까?`)) {
+              try {
+                await axios.delete(`http://localhost:3001/department/${id}`);
+              } catch (e) {
+                console.error(e);
+                alert("요청을 처리 실패");
+                return;
+              }
+  
+              alert(`${dname}가 삭제되었습니다`);
+              current.closest("tr").remove();
+            }
+          }
+        });
+      });
+    })();
+  </script>
+  <script>
+    document.querySelector("#all-check").addEventListener("change", e => {
+      document.querySelectorAll(".check").forEach((v,i) => {
+        v.checked = e.currentTarget.checked;
+      })
+    })
+  </script>
+</body>
+</html>
