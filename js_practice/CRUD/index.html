@@ -12,12 +12,12 @@
   </header>
 
   <main>
-    <p><a href="add.html">새 학과 추가</a></p>
-    <label>전체선택<input type="checkbox" id="all-check"/></label>
-    <span>
-      <button type="button"><a href="#" id="edit">수정</a></button>
-      <button type="button"><a href="#" id="delete">삭제</a></button>
-    </span>
+    <div class="flex">
+      <button type="button" class="add"><a href="add.html">새 학과 추가</a></button>
+      <button type="button" class="editBtn"><a href="#" id="edit">수정</a></button>
+      <button type="button" class="delBtn"><a href="#" id="delete">삭제</a></button>
+    </div>
+    <label class="all-checkbox">전체선택 <input type="checkbox" class="all-check"/></label>
 
     <table>
       <colgroup>
@@ -109,58 +109,144 @@
         tdInput.setAttribute("type", "checkbox");
         tdInput.setAttribute("class", "check");
       })
-
-      //edit delete
-      const aEdit = document.querySelector("#edit");
-      aEdit.addEventListener("click", e => {
-        e.preventDefault(); //???
-        document.querySelectorAll(".row").forEach((v,i) => {
-          if (v.querySelector(".check").checked) {
-            e.currentTarget.href = `edit.html?id=${response.data[i].id}`;
-            console.log(e.currentTarget);
-            //go to that link
-            setTimeout(() => {
-              // Now manually navigate to the link after custom logic
-              window.location.href = e.currentTarget.href; // This will manually navigate to the link
-              console.log('Navigating to the link after custom code ran.');
-            }, 200);
-          }
-        });
-      });
       
-      //delete
+      //edit btn
+      const checkboxes = document.querySelectorAll(".check");
+      //input .checked .filter
+      checkboxes.forEach((v,i) => {
+        v.addEventListener("change", e => {
+          const checkedArray = Array.from(checkboxes).filter(checkbox => checkbox.checked);
+          const checkedCount = checkedArray.length;
+          const edit = document.querySelector("#edit");
+          //const editBtn = document.querySelector(".editBtn");
+          if (checkedCount === 1) { //only one checked
+            edit.classList.add("active");
+            //editBtn.classList.add("active");
+            document.querySelectorAll(".row").forEach((v1,i1) => {
+              if (v1.querySelector(".check").checked) {
+                document.querySelector("#edit").href = `edit.html?id=${response.data[i1].id}`;
+              }
+            });
+          } else {  //if this doesn't exist, it will toggle when the count becomes 1
+            edit.classList.remove("active");
+            //editBtn.classList.remove("active");
+          }
+        })
+      })
+
+      //edit event
+      // const edit = document.querySelector("#edit");
+      // edit.addEventListener("click", e => {
+      //   e.preventDefault();
+      //   document.querySelectorAll(".row").forEach((v,i) => {
+      //     if (v.querySelector(".check").checked) {
+      //       e.currentTarget.href = `edit.html?id=${response.data[i].id}`;
+      //       //go to that link
+      //       setTimeout(() => {
+      //         window.location.href = e.target.href; //manually navigate to the link
+      //       }, 100);
+      //     }
+      //   });
+      // });
+      
+      //delete event
       const aDelete = document.querySelector("#delete");
       aDelete.addEventListener("click", e => {
         e.preventDefault();
-
-        document.querySelectorAll(".row").forEach(async (v,i) => {
-          if (v.querySelector(".check").checked) {
-            const id = response.data[i].id;
-            const dname = response.data[i].dname;
-  
-            if (confirm(`정말 ${dname}(을)를 삭제하시겠습니까?`)) {
-              try {
-                await axios.delete(`http://localhost:3001/department/${id}`);
-              } catch (e) {
-                console.error(e);
-                alert("요청을 처리 실패");
-                return;
-              }
-  
-              alert(`${dname}가 삭제되었습니다`);
-              current.closest("tr").remove();
+        //confirm once
+        const checkedArray = Array.from(checkboxes).filter(checkbox => checkbox.checked);
+        const len = checkedArray.length;
+        if (confirm(`정말 ${len}개의 학과 정보(을)를 삭제하시겠습니까?`)) {
+          //delete data loop
+          checkedArray.forEach(async (v,i) => {
+            const delId = parseInt(v.closest("tr").children[1].innerHTML); //parseInt in the beginning
+            console.log(delId);
+            try {
+              await axios.delete(`http://localhost:3001/department/${delId}`);
+            } catch (e) {
+              console.error(e);
+              alert("요청을 처리 실패");
+              return;
             }
-          }
-        });
+          })
+          //alert once
+          alert(`${len}개의 학과 정보가 삭제되었습니다`);
+          //remove row loop
+          checkedArray.forEach((v,i) => {
+            v.closest("tr").remove();
+          });
+        }
       });
+
+      //check event //it runs after getting the data
+      //   document.querySelectorAll(".check").forEach((v,i) => {
+      //   v.addEventListener("change", (e) => {
+      //     const allChecked =  //allChecked = true when same
+      //       document.querySelectorAll(".check:checked").length === 
+      //       document.querySelectorAll(".check").length;
+      //     document.querySelector(".all-check").checked = allChecked;
+      //     //console.log("Checkbox state changed. All checked: ", allChecked);
+      //   });
+      // });
     })();
   </script>
   <script>
-    document.querySelector("#all-check").addEventListener("change", e => {
-      document.querySelectorAll(".check").forEach((v,i) => {
-        v.checked = e.currentTarget.checked;
-      })
-    })
+    //all-check event
+    // const check = document.querySelectorAll(".check");  //why init out of EL doesn't work
+    // document.querySelector(".all-check").addEventListener("change", e => {
+    //   document.querySelectorAll(".check").forEach((v,i) => {
+    //     v.checked = e.currentTarget.checked;
+    //   })
+    // })
+
+    //check event
+    //doesn't work either, because it's outside of async()
+    // document.querySelectorAll(".check").forEach((v,i) => {
+    //   v.addEventListener("change", (e) => {
+    //     const allChecked =  //allChecked = true when same
+    //       document.querySelectorAll(".check:checked").length === 
+    //       document.querySelectorAll(".check").length;
+    //     document.querySelector(".all-check").checked = allChecked;
+    //     console.log("Checkbox state changed. All checked: ", allChecked);
+    //   });
+    // });
+
+    //works well, because event delegation used, more efficient, because only one EL used
+    document.addEventListener("change", (e) => {
+      // update .all-check
+      if (e.target.classList.contains("check")) { 
+        const allChecked = 
+          document.querySelectorAll(".check:checked").length === 
+          document.querySelectorAll(".check").length;
+        //update
+        document.querySelector(".all-check").checked = allChecked;
+        //Debugging log
+        // console.log("Checkbox state changed. All checked: ", allChecked);
+      }
+      
+      // update .check
+      if (e.target.classList.contains(".all-check")) {
+        document.querySelectorAll(".check").forEach((v,i) => {
+          v.checked = e.currentTarget.checked;
+        })
+      }
+    });
+
+    //doesn't work, it's the almost same as the first one
+    // document.querySelectorAll(".check").forEach((v,i) => {
+    //   v.addEventListener("change", e => {
+    //     const allCheck = document.querySelector(".all-check");
+    //     if (!v.checked) {
+    //       console.log("one");
+    //       allCheck.checked = false;
+    //       return;
+    //     }
+    //     if (i === document.querySelectorAll(".check").length-1) {
+    //       console.log("two");
+    //       allCheck.checked = true;
+    //     }
+    //   });
+    // });
   </script>
 </body>
 </html>
